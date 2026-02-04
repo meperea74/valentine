@@ -13,6 +13,8 @@ body {
 
 /* White Rounded Box */
 .content-box {
+    width: 75%;
+    max-width: 800px;
     background: white;
     padding: 30px;
     border-radius: 15px;
