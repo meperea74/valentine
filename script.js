@@ -15,9 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Yes button triggers confetti and music
     yesButton.addEventListener('click', function () {
-        alert('Yay! Can’t wait for our date! ❤️');
+        let content = document.getElementById("content");
+        content.innerHTML = `
+            <h1>❤️ Yay! Can’t wait for our date! ❤️</h1>
+        `;
         confetti();
-        document.getElementById("background-music").play();
     });
 
     // Function to generate multiple evil face emojis
@@ -27,9 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
             evilFace.innerHTML = '😈';
             evilFace.classList.add('evil-face');
             document.body.appendChild(evilFace);
+
+            let width = window.innerWidth;
+            let height = window.innerHeight
             
-            let x = Math.random() * window.innerWidth;
-            let y = Math.random() * window.innerHeight;
+            let x = clamp(Math.random() * width, 75, width - 75);
+            let y = clamp(Math.random() * height, 75, height - 75);
             
             evilFace.style.left = `${x}px`;
             evilFace.style.top = `${y}px`;
@@ -38,6 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 evilFace.remove();
             }, 1000);
+        }
+    }
+
+    function clamp(value, min, max) {
+        if (value < min) {
+            return min;
+        } else if (value > max) {
+            return max;
+        } else {
+            return value;
         }
     }
 });
